@@ -99,7 +99,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               child: SizedBox(
                 width: AppSize.s20,
                 height: AppSize.s20,
-                child: SvgPicture.asset(ImageManager.leftArrowIc),
+                child: SvgPicture.asset(ImageAssets.leftArrowIc),
               ),
               onTap: () {
                 // go to previous slide
@@ -125,7 +125,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 )
             ],
           ),
-          //right Arrow
+          //right Arrow 
           Padding(
             padding: const EdgeInsets.all(AppPadding.p14),
             child: GestureDetector(
@@ -138,7 +138,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               child: SizedBox(
                 width: AppSize.s20,
                 height: AppSize.s20,
-                child: SvgPicture.asset(ImageManager.rightArrowIc),
+                child: SvgPicture.asset(ImageAssets.rightArrowIc),
               ),
             ),
           ),
@@ -149,9 +149,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   Widget _getProperCircle(int index, int currentIndex) {
     if (index == currentIndex) {
-      return SvgPicture.asset(ImageManager.hollowCirlceIc);
+      return SvgPicture.asset(ImageAssets.hollowCirlceIc);
     } else {
-      return SvgPicture.asset(ImageManager.solidCircleic);
+      return SvgPicture.asset(ImageAssets.solidCircleic);
     }
   }
 

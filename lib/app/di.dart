@@ -37,7 +37,7 @@ Future<void> initAppModule() async {
   //app service client
   instance.registerLazySingleton<AppServiceClients>(() => AppServiceClients(dio!));
 
-  // remote data source
+  // remote data source//
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoreDataSourceImpl(instance()));
 

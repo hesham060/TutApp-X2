@@ -18,4 +18,8 @@ class AppString {
   static const login = "login";
   static const forgetPassword = "forget password";
   static const registerText = "Not A membet ? Sing Up ";
+  static const loading = "Loading ...";
+  static const buttonTitle = "";
+  static const retryAgain = "retry again";
+  static const ok = "ok";
 }

@@ -73,13 +73,13 @@ class ONBoardingViewModel extends BaseViewModel
         // so here we created this empty variable
 
         SliderObject(AppString.onBoardingTitle1, AppString.onBoardingSubTitle1,
-            ImageManager.onBoardingLogo1),
+            ImageAssets.onBoardingLogo1),
         SliderObject(AppString.onBoardingTitle2, AppString.onBoardingSubTitle2,
-            ImageManager.onBoardingLogo2),
+            ImageAssets.onBoardingLogo2),
         SliderObject(AppString.onBoardingTitle3, AppString.onBoardingSubTitle3,
-            ImageManager.onBoardingLogo3),
+            ImageAssets.onBoardingLogo3),
         SliderObject(AppString.onBoardingTitle4, AppString.onBoardingSubTitle4,
-            ImageManager.onBoardingLogo4),
+            ImageAssets.onBoardingLogo4),
       ];
 
   @override

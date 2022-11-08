@@ -32,7 +32,7 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.primary,
-      body: Center(child: Image(image: AssetImage(ImageManager.splashLogo))),
+      body: Center(child: Image(image: AssetImage(ImageAssets.splashLogo))),
     );
   }
   @override               // عشان نتاكد انه انتهي وخلص نستخدم هذه الدالة 

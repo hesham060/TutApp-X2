@@ -1,6 +1,7 @@
 import 'dart:async';
-
 import 'package:firstproject/presentation/base/base_view_model.dart';
+import 'package:firstproject/presentation/common/state_renderer.dart';
+import 'package:firstproject/presentation/common/state_renderer_implementer.dart';
 import '../../../domain/usecase/login_use_case.dart';
 import '../../common/freezed_data_classes.dart';
 
@@ -24,13 +25,18 @@ class LoginViewModel extends BaseViewModel
       StreamController<void>.broadcast();
   @override
   void dispose() {
+    super.dispose();
     // here we are close in dispose function streams
     _userNamestreamController.close();
     _passwordstreamController.close();
   }
 
   @override
-  void start() {}
+  void start() {
+// view model should tell view please show content state
+    inputState.add(ContentState());
+  }
+
   @override
   Sink get inputPassword => _passwordstreamController;
   @override
@@ -40,18 +46,20 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-    // (await _loginUseCase.excute(
-    //         LoginUseCaseInput(loginObject.userName, loginObject.password)))
-    //     .fold(
-    //   (failure) => {
-    //     //left - failure
-    //     print(failure.message)
-    //   },
-    //   (data) => {
-    //     // right -> data (sucess)
-    //     print(data.customer?.name)
-    //   },
-    // );
+    inputState.add(LoadingState(
+      stateRendererType: StateRendererType.popupLoadingState,
+    ));
+    (await _loginUseCase.excute(
+            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+        .fold(
+      (failure) => {
+        inputState.add(
+            ErrorState(StateRendererType.popupErrorState, failure.message)),
+      },
+      (data) => {
+        inputState.add(ContentState()),
+      },
+    );
   }
 
   @override
