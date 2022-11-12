@@ -6,7 +6,6 @@ import 'package:firstproject/presentation/resources/styles_manager.dart';
 import 'package:firstproject/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 enum StateRendererType {
   // POPUP STATES (DIALOG)
   popupLoadingState,
@@ -19,7 +18,6 @@ enum StateRendererType {
   // general
   contentState
 }
-
 class StateRenderer extends StatelessWidget {
   StateRendererType stateRendererType;
   String message;

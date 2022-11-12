@@ -1,3 +1,6 @@
+
+import 'package:firstproject/app/di.dart';
+import 'package:firstproject/app/shared_prefs.dart';
 import 'package:firstproject/presentation/onboarding/view_model/onboarding_view_model.dart';
 import 'package:firstproject/presentation/resources/assets_manager.dart';
 import 'package:firstproject/presentation/resources/color_manager.dart';
@@ -17,9 +20,13 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
-  ONBoardingViewModel _viewModel =
-      ONBoardingViewModel(); // here to create instant of class
-  _bind() {
+ final ONBoardingViewModel _viewModel =  ONBoardingViewModel(); 
+ final PageController _pageController = PageController();
+final AppPrefreneces _appPrefreneces= instance<AppPrefreneces>();
+ 
+ // here to create instant of class
+      _bind() {
+        _appPrefreneces.setOnBoardingScreenView();
     _viewModel.start();
   }
 
@@ -29,7 +36,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     super.initState();
   }
 
-  final PageController _pageController = PageController();
+  
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -120,12 +127,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 Padding(
                   padding: const EdgeInsets.all(AppPadding.p8),
                   child: _getProperCircle(
-                      i,sliderViewObject.currentIndex,
-                      ), // here i cosider the index which send to widget get proper circle coming from loop for
+                    i,
+                    sliderViewObject.currentIndex,
+                  ), // here i cosider the index which send to widget get proper circle coming from loop for
                 )
             ],
           ),
-          //right Arrow 
+          //right Arrow
           Padding(
             padding: const EdgeInsets.all(AppPadding.p14),
             child: GestureDetector(

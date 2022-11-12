@@ -14,6 +14,8 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _passwordstreamController =
       StreamController<String>.broadcast();
+  final StreamController isUserLoggedInSucessfullyStreamController =
+      StreamController<bool>();
   // this variable coming from freezed package which save last information like user name and password
   var loginObject = LoginObject("", "");
   // // here we make variable of Login usecase
@@ -29,6 +31,7 @@ class LoginViewModel extends BaseViewModel
     // here we are close in dispose function streams
     _userNamestreamController.close();
     _passwordstreamController.close();
+    isUserLoggedInSucessfullyStreamController.close();
   }
 
   @override
@@ -50,14 +53,19 @@ class LoginViewModel extends BaseViewModel
       stateRendererType: StateRendererType.popupLoadingState,
     ));
     (await _loginUseCase.excute(
-            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+      LoginUseCaseInput(loginObject.userName, loginObject.password),
+    ))
         .fold(
       (failure) => {
         inputState.add(
             ErrorState(StateRendererType.popupErrorState, failure.message)),
       },
-      (data) => {
-        inputState.add(ContentState()),
+      (data) {
+      // right -> data (success)
+      // content
+      inputState.add(ContentState());
+      // navigate to main screen
+      isUserLoggedInSucessfullyStreamController.add(true);
       },
     );
   }
